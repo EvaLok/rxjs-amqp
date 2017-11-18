@@ -1,0 +1,9 @@
+{
+  "name": "rxjs-amqp",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "repository": "git@github.com:EvaLok/rxjs-amqp.git",
+  "author": "Eva Beekers <eva.aedea@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
