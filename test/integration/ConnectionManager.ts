@@ -10,17 +10,25 @@ describe(`ConnectionManager`, function(){
         it(`should init connection and create channel based on supplied config`, async function(){
             const sut = new ConnectionManager();
 
-            await sut.addConnection("test_connection", {
+            await sut.addConnection("test", {
                 protocol: "amqp",
                 hostname: "localhost"
             });
 
-            const connData = sut.getConnectionData("test_connection");
-
+            const connData = sut.getConnectionData("test");
             Assert.isObject(connData.connection);
             Assert.equal(connData.isOpen, true);
             Assert.equal(connData.config.protocol, "amqp");
             Assert.equal(connData.config.hostname, "localhost");
+
+
+            const chanData = sut.getChannelData("test");
+            Assert.isObject(chanData.channel);
+            Assert.equal(chanData.isOpen, true);
+            Assert.equal(chanData.isBlocked, false);
+            Assert.equal(chanData.isError, false);
+            Assert.isObject(chanData.connectionData);
+            Assert.isObject(chanData.connectionData.connection);
 
 
             await connData.connection.close();
